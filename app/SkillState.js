@@ -1,4 +1,4 @@
-const character = require("./character");
+const {getCharacter, saveCharacter} = require("./character");
 
 const skillTypes = {
   "compétences sociales": [
@@ -51,25 +51,29 @@ const skillTypes = {
 
 module.exports = {
   "addSkillPoints": function () {
-    const skillPointLeft = character.countSkillMax() - character.countSkillSpend();
+    const character = getCharacter(this.user(), this.getSessionAttribute("character_name"));
+    const skillPointLeft = character.maxSkillPointSpend - character.skillPointSpend;
     if (this.alexaSkill().hasSlotValue("skill") && this.getInput("skill").key && (
         this.alexaSkill().hasSlotValue("rank_up") ||
         this.alexaSkill().hasSlotValue("to_rank"))
     ) {
       let skill = this.getInput("skill").key;
-      let ranks = this.getInput("to_rank").value || ("x + " + this.getInput("rank_up").value);
+      let ranks = this.getInput("to_rank").value || (character.skill(skill).rank + this.getInput("rank_up").value);
+      character.setRanks(skill, ranks);
+      saveCharacter(this.user(), character);
       this.followUpState("OpenedCharacter")
-      .ask(`${this.getSessionAttribute("character_name")} a maintenant ${ranks} rangs en ${skill}`)
+      .ask(`${character.name} a maintenant ${ranks} rangs en ${skill}`)
       
       /**
        * Known Skill provided
       */
     } else if (this.alexaSkill().hasSlotValue("skill") && this.getInput("skill").key) {
+      let skill = this.getInput("skill").key;
       this.alexaSkill()
       .dialogElicitSlot(
         'rank_up',
-        `${this.getSessionAttribute("character_name")}
-        a x rangs en ${this.getInput("skill").key} . 
+        `${character.name}
+        a ${character.skill(skill)} rangs en ${skill} . 
         Combien de points voulez vous investir dans cette compétence ?`);
 
       /**
@@ -99,7 +103,8 @@ module.exports = {
   },
 
   "Unhandled": function() {
-    const skillPointLeft = character.countSkillMax() - character.countSkillSpend();
+    const character = getCharacter(this.user(), this.getSessionAttribute("character_name"));
+    const skillPointLeft = character.maxSkillPointSpend - character.skillPointSpend;
     this.ask(
       `Il reste ${skillPointLeft} points de compétence à placer,
         vous pouvez les placer dans des compétences physiques,

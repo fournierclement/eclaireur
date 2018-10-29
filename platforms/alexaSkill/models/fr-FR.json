@@ -167,6 +167,18 @@
           "samples": [
             "Nouveau personnage"
           ]
+        },
+        {
+          "name": "YesIntent",
+          "samples": [
+            "ok",
+            "vas y",
+            "yep",
+            "ouaip",
+            "yeah",
+            "oui",
+            "yes"
+          ]
         }
       ],
       "types": [

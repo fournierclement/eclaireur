@@ -766,6 +766,18 @@
 			"phrases": [
 				"Nouveau personnage"
 			]
+		},
+		{
+			"name": "YesIntent",
+			"phrases": [
+				"ok",
+				"vas y",
+				"yep",
+				"ouaip",
+				"yeah",
+				"oui",
+				"yes"
+			]
 		}
 	]
 }

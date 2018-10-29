@@ -1,5 +1,5 @@
 'use strict';
-const character = require("./character");
+const {getCharacter} = require("./character");
 
 // =================================================================================
 // App Configuration
@@ -39,11 +39,21 @@ app.setHandler({
     } else {
       let character_name = this.getInput("character_name").value;
       this.setSessionAttribute("character_name", character_name);
-      this.followUpState("OpenedCharacter")
-      .ask(`J'ouvre ${character_name} . ${character.characterTODO()}`);
+      let character = getCharacter(this.user(), character_name);
+
+      /**
+       * Check character exists
+       */
+      if (character){
+        this.followUpState("OpenedCharacter")
+        .ask(`J'ouvre ${character_name} . ${character.promptTODO}`);
+      } else {
+        this.followUpState("NewCharacter")
+        .ask(`Le personnage ${character_name} n'existe pas encore. Voulez-vous le créer ?`)
+      }
     }
   },
-
+  "NewCharacter": require("./NewCharacterState"),
   "OpenedCharacter": require("./OpenedCharacterState"),
 });
 

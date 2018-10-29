@@ -1,4 +1,4 @@
-const character = require("./character");
+const { getCharacter } = require('./character');
 
 module.exports = {
   "addSkillPoints": function () {
@@ -14,7 +14,8 @@ module.exports = {
     .toIntent("LevelUpIntent")
   },
   "Unhandled": function () {
-    let prompt = `Vous travaillez sur ${this.getSessionAttribute("character_name")}<break time="1s"/>. ${character.characterTODO()}`;
+    let character = getCharacter(this.user(), this.getSessionAttribute("character_name"));
+    let prompt = `Vous travaillez sur ${character.name}<break time="1s"/>. ${character.promptTODO}`;
     this
     .followUpState(this.getState() + '.SkillState')
     .ask(prompt);
