@@ -28,7 +28,7 @@ const skillTypes = {
     "l'estimation",
     "la perception",
     "les premiers secours",
-    "le sabotage", 
+    "le sabotage",
     "la survie",
     "l'utilisation d'objets magiques"
   ],
@@ -63,7 +63,7 @@ module.exports = {
       saveCharacter(this.user(), character);
       this.followUpState("OpenedCharacter")
       .ask(`${character.name} a maintenant ${ranks} rangs en ${skill}`)
-      
+
       /**
        * Known Skill provided
       */
@@ -73,7 +73,7 @@ module.exports = {
       .dialogElicitSlot(
         'rank_up',
         `${character.name}
-        a ${character.skill(skill)} rangs en ${skill} . 
+        a ${character.skill(skill)} rangs en ${skill} .
         Combien de points voulez vous investir dans cette compétence ?`);
 
       /**

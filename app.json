@@ -4,5 +4,5 @@
 			"name": "eclaireur"
 		}
 	},
-	"endpoint":"arn:aws:lambda:eu-west-1:490881469487:function:eclaireur-skill"
+	"endpoint":"https://webhook.jovo.cloud/2fc6e1c2-d306-4414-8dd2-20096f498191"
 }

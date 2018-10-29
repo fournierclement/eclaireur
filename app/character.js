@@ -33,8 +33,6 @@ class Character {
     this.languages = completeJson.languages;
     this.TODO = completeJson.TODO;
   }
-  
-
 
   /**
    * get caracteristic modifer
@@ -45,7 +43,7 @@ class Character {
    * character skill
    */
   skill(skillName){ return this.skills[skillName] || rules[skillName] }
-  setRanks(skillName, rank){ 
+  setRanks(skillName, rank){
     if( !this.skills[skillName] ){
       this.skills[skillName] = {rank:0, class: false};
     }
@@ -73,6 +71,10 @@ class Character {
     this.features.push(feature);
   }
 
+  setRace(race_type){
+    this.race = race_type;
+  }
+
   /**
    * get character left tasks
    */
@@ -92,7 +94,7 @@ class Character {
     .keys(this.skills)
     .reduce((acc, skillName) => acc + this.skill(skillName).rank, 0)
   }
-  
+
   /**
    * get max skill point allowed for this level
    */
@@ -105,7 +107,6 @@ class Character {
       ));
     }, 0);
   }
-  
 
   /**
    * gets the name of the capacity from the name of the class
@@ -126,7 +127,6 @@ class Character {
     let classcap = rules.classes[className];
     return classcap[promptNumber]
   }
-
 
   /**
    * prompt toDo
