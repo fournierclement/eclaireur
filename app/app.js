@@ -10,6 +10,10 @@ const {App} = require('jovo-framework');
 
 const config = {
   logging: false,
+  db: {
+    type: 'dynamodb',
+    tableName: 'characters',
+  }
 };
 
 const app = new App(config);

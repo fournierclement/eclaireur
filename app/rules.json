@@ -1,0 +1,41 @@
+{
+  "classes": {
+    "guerrier": { "skillByLevel": 2 },
+    "mage": { "skillByLevel": 2 },
+    "prêtre": { "skillByLevel": 2 }
+  },
+  "skills": {
+    "acrobatie": {"mod":"dex", "trained": false},
+    "art de la magie": {"mod":"int", "trained": true},
+    "bluff": {"mod":"cha", "trained": false},
+    "exploration souterraine": {"mod":"int", "trained": true},
+    "folklore local": {"mod":"int", "trained": true},
+    "géographie": {"mod":"int", "trained": true},
+    "histoire": {"mod":"int", "trained": true},
+    "ingénierie": {"mod":"int", "trained": true},
+    "mystères": {"mod":"int", "trained": true},
+    "nature": {"mod":"int", "trained": true},
+    "noblesse": {"mod":"int", "trained": true},
+    "plans": {"mod":"int", "trained": true},
+    "religion": {"mod":"int", "trained": true},
+    "déguisement": {"mod":"cha", "trained": false},
+    "diplomatie": {"mod":"cha", "trained": false},
+    "discrétion":{"mod":"dex", "trained": false},
+    "dressage": {"mod":"cha", "trained": true},
+    "équitation": {"mod":"dex", "trained": false},
+    "escalade": {"mod":"for", "trained": false},
+    "escamotage": {"mod":"dex", "trained": true},
+    "estimation": {"mod":"int", "trained": false},
+    "évasion": {"mod":"dex", "trained": false},
+    "intimidation": {"mod":"cha", "trained": false},
+    "linguistique": {"mod":"int", "trained": true},
+    "natation": {"mod":"for", "trained": false},
+    "perception": {"mod":"sag", "trained": false},
+    "premiers secours": {"mod":"sag", "trained": false},
+    "psychologie": {"mod":"sag", "trained": false},
+    "sabotage": {"mod":"dex", "trained": true},
+    "survie": {"mod":"sag", "trained": false},
+    "utilisation d'objets magiques": {"mod":"cha", "trained": true},
+    "vol": {"mod":"dex", "trained": false}
+  }
+}

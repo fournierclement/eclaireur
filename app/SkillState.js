@@ -58,14 +58,13 @@ module.exports = {
     ) {
       let skill = this.getInput("skill").key;
       let ranks = this.getInput("to_rank").value || ("x + " + this.getInput("rank_up").value);
-      this.tell(`${this.getSessionAttribute("character_name")} a maintenant ${ranks} rangs en ${skill}`)
-
+      this.followUpState("OpenedCharacter")
+      .ask(`${this.getSessionAttribute("character_name")} a maintenant ${ranks} rangs en ${skill}`)
+      
       /**
        * Known Skill provided
       */
     } else if (this.alexaSkill().hasSlotValue("skill") && this.getInput("skill").key) {
-
-      
       this.alexaSkill()
       .dialogElicitSlot(
         'rank_up',
@@ -94,6 +93,11 @@ module.exports = {
       );
     }
   },
+  "AMAZON.CancelIntent": function() {
+    this.followUpState("OpenedCharacter")
+    .toIntent("Unhandled");
+  },
+
   "Unhandled": function() {
     const skillPointLeft = character.countSkillMax() - character.countSkillSpend();
     this.ask(
