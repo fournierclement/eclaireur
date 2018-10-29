@@ -1,0 +1,449 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "eclaireur",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": [
+            "annule"
+          ]
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "aide moi",
+            "que puis-je faire",
+            "aide-moi"
+          ]
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": [
+            "stop",
+            "arretons"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "addSkillPoints",
+          "slots": [
+            {
+              "name": "rank_up",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "skill",
+              "type": "skill"
+            },
+            {
+              "name": "to_rank",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "skill_type",
+              "type": "skill_type"
+            }
+          ],
+          "samples": [
+            "{rank_up}",
+            "mets {rank_up} en {skill}",
+            "rajoute {rank_up} en {skill}",
+            "augmente {skill}  de {rank_up}",
+            "{skill_type}",
+            "passe {skill} à {to_rank}",
+            "augmente {skill} jusqu'à {to_rank}",
+            "augmente {skill} à {to_rank}",
+            "monte {skill} à {to_rank}",
+            "monte {skill} ",
+            "investi {rank_up} en {skill}",
+            "ajoute {rank_up} en {skill}",
+            "compétence"
+          ]
+        },
+        {
+          "name": "OpenCharacter",
+          "slots": [
+            {
+              "name": "character_name",
+              "type": "AMAZON.FirstName",
+              "samples": [
+                "{character_name}",
+                "ouvre {character_name}"
+              ]
+            }
+          ],
+          "samples": [
+            "ouvre",
+            "ouvre un personnage",
+            "ouvrir un personnage",
+            "ouvrir",
+            "Ouvre {character_name}"
+          ]
+        },
+        {
+          "name": "NewCharacter",
+          "samples": [
+            "Nouveau personnage"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "vol",
+                "synonyms": [
+                  "le vol"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "objects magiques",
+                "synonyms": [
+                  "l'utilisation d'objets magiques",
+                  "les objets magiques",
+                  "utilisation d'objets magiques"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "survie",
+                "synonyms": [
+                  "la survie"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "sabotage",
+                "synonyms": [
+                  "la survie"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "psychologie",
+                "synonyms": [
+                  "la psychologie"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "premiers secours",
+                "synonyms": [
+                  "les premiers secours"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "perception",
+                "synonyms": [
+                  "la perception"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "natation",
+                "synonyms": [
+                  "la natation"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "linguistique",
+                "synonyms": [
+                  "langages",
+                  "les langages",
+                  "langue",
+                  "les langues",
+                  "la linguistique"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "intimidation",
+                "synonyms": [
+                  "l'intimidation"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "évasion",
+                "synonyms": [
+                  "l'évasion"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "estimation",
+                "synonyms": [
+                  "l'estimation"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "escamotage",
+                "synonyms": [
+                  "l'escamotage"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "escalade",
+                "synonyms": [
+                  "l'escalade"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "équitation",
+                "synonyms": [
+                  "l'équitation"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "dressage",
+                "synonyms": [
+                  "le dressage"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "discrétion",
+                "synonyms": [
+                  "la discrétion"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "diplomatie",
+                "synonyms": [
+                  "la diplomatie"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "déguisement",
+                "synonyms": [
+                  "le déguisement"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "religion",
+                "synonyms": [
+                  "la religion",
+                  "connaissance religion"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "plans",
+                "synonyms": [
+                  "les plans",
+                  "connaissance plans"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "noblesse",
+                "synonyms": [
+                  "la noblesse",
+                  "connaissance noblesse"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "nature",
+                "synonyms": [
+                  "la nature",
+                  "connaissance nature"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "mystères",
+                "synonyms": [
+                  "les mystères",
+                  "connaissance mystères"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "ingénierie",
+                "synonyms": [
+                  "l'ingénierie",
+                  "connaissance ingénierie"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "histoire",
+                "synonyms": [
+                  "l'histoire",
+                  "connaissance histoire"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "géographie",
+                "synonyms": [
+                  "la géographie",
+                  "connaissance géographie"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "folklore local",
+                "synonyms": [
+                  "le folklore local",
+                  "le folklore",
+                  "connaissance folklore",
+                  "folklore",
+                  "connaissance folklore local"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "exploration souterraine",
+                "synonyms": [
+                  "l'exploration souterraine",
+                  "l'exploration",
+                  "exploration",
+                  "connaissance exploration",
+                  "connaissance exploration souterraine"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "bluff",
+                "synonyms": [
+                  "le bluff"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "art de la magie",
+                "synonyms": [
+                  "l'art de la magie",
+                  "connaissance magie"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "acrobatie",
+                "synonyms": [
+                  "l'acrobatie"
+                ]
+              }
+            }
+          ],
+          "name": "skill"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "compétences utilitaires",
+                "synonyms": [
+                  "utilitaires"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "compétences de connaissances",
+                "synonyms": [
+                  "connaissances"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "compétences sociales",
+                "synonyms": [
+                  "sociales"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "compétences physiques",
+                "synonyms": [
+                  "physiques"
+                ]
+              }
+            }
+          ],
+          "name": "skill_type"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "OpenCharacter",
+          "confirmationRequired": false,
+          "slots": [
+            {
+              "name": "character_name",
+              "type": "AMAZON.FirstName",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.421562492942.1220492298751"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.421562492942.1220492298751",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Quel personnage voulez vous ouvrir ?"
+          }
+        ]
+      }
+    ]
+  }
+}

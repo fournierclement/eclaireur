@@ -1,0 +1,8 @@
+{
+	"alexaSkill": {
+		"nlu": {
+			"name": "eclaireur"
+		}
+	},
+	"endpoint":"arn:aws:lambda:eu-west-1:490881469487:function:eclaireur-skill"
+}
