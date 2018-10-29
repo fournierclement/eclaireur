@@ -165,6 +165,13 @@
         {
           "name": "NewCharacter",
           "samples": [
+            "Crée nouveau personnage",
+            "Crée un personnage",
+            "Crée un nouveau personnage",
+            "Je veux créer un nouveau personnage",
+            "Créer personnage",
+            "Créer un personnage",
+            "Créer un nouveau personnage",
             "Nouveau personnage"
           ]
         },
@@ -178,6 +185,60 @@
             "yeah",
             "oui",
             "yes"
+          ]
+        },
+        {
+          "name": "ChooseRaceIntent",
+          "slots": [
+            {
+              "name": "race_type",
+              "type": "race_type",
+              "samples": [
+                "{race_type}"
+              ]
+            }
+          ],
+          "samples": [
+            "Ajouter ma race",
+            "Ajouter une race",
+            "Je veux choisir une race",
+            "Je veux choisir ma race",
+            "Choisis ma race",
+            "Ajoute une race",
+            "Race",
+            "Choisir ma race",
+            "Choisir race",
+            "Choisir une race"
+          ]
+        },
+        {
+          "name": "askCharacterSheet",
+          "slots": [
+            {
+              "name": "caracteristic",
+              "type": "caracteritics"
+            },
+            {
+              "name": "race",
+              "type": "race_type"
+            },
+            {
+              "name": "class",
+              "type": "ClassePossible"
+            },
+            {
+              "name": "askAboutInformation",
+              "type": "askAboutInformation",
+              "samples": [
+                "{askAboutInformation}"
+              ]
+            }
+          ],
+          "samples": [
+            "Résume mon personnage",
+            "Résume moi mon personnage",
+            "Donne moi des informations sur mon personnage",
+            "Donne moi des informations"
           ]
         }
       ],
@@ -700,6 +761,137 @@
             }
           ],
           "name": "EcoleMagique"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "Nain",
+                "synonyms": [
+                  "une naine",
+                  "naine",
+                  "un nain"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Elfe",
+                "synonyms": [
+                  "une elfe",
+                  "un elfe"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Humain",
+                "synonyms": [
+                  "humaine",
+                  "une humaine",
+                  "un humain"
+                ]
+              }
+            }
+          ],
+          "name": "race_type"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "Charisme",
+                "synonyms": [
+                  "le charisme",
+                  "Son charisme"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Sagesse",
+                "synonyms": [
+                  "la sagesse",
+                  "sa sagesse"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Intelligence",
+                "synonyms": [
+                  "l'intelligence",
+                  "son intelligence"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Constitution",
+                "synonyms": [
+                  "la constitution",
+                  "sa constitution"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Dextérité",
+                "synonyms": [
+                  "la dextérité",
+                  "sa dextérité"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Force",
+                "synonyms": [
+                  "la force",
+                  "sa force"
+                ]
+              }
+            }
+          ],
+          "name": "caracteritics"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "classe",
+                "synonyms": [
+                  "je veux connaitre sa classe",
+                  "la classe",
+                  "je veux sa classe",
+                  "sa classe"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "race",
+                "synonyms": [
+                  "je veux connaitre sa race",
+                  "sa race",
+                  "je veux sa race",
+                  "la race"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "caractéristiques",
+                "synonyms": [
+                  "je veux connaitre ses caractéristiques",
+                  "les caractéristiques",
+                  "ses caractéristiques",
+                  "je veux ses caractéristiques"
+                ]
+              }
+            }
+          ],
+          "name": "askAboutInformation"
         }
       ]
     },
@@ -803,6 +995,54 @@
               "confirmationRequired": false
             }
           ]
+        },
+        {
+          "name": "ChooseRaceIntent",
+          "confirmationRequired": false,
+          "slots": [
+            {
+              "name": "race_type",
+              "type": "race_type",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.616513878919.1140247006359"
+              }
+            }
+          ]
+        },
+        {
+          "name": "askCharacterSheet",
+          "confirmationRequired": false,
+          "slots": [
+            {
+              "name": "caracteristic",
+              "type": "caracteritics",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            },
+            {
+              "name": "race",
+              "type": "race_type",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            },
+            {
+              "name": "class",
+              "type": "ClassePossible",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            },
+            {
+              "name": "askAboutInformation",
+              "type": "askAboutInformation",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.755084225292.1000811997780"
+              }
+            }
+          ]
         }
       ]
     },
@@ -893,6 +1133,24 @@
           {
             "type": "PlainText",
             "value": "Dans quelle compétence voulez-vous investir ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.616513878919.1140247006359",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Quelle race voulez vous pour votre personnage. Humain, elfe ou nain ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.755084225292.1000811997780",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": " Je peux vous donnez les caractéristiques, la race ou la classe de votre personnage. Que voulez vous savoir ?"
           }
         ]
       }
