@@ -54,7 +54,23 @@ class Character {
    * get character level
    */
   get level() { return this.classes.reduces((acc, job) => acc + job.level, 0); }
-  
+  classLevel(className) {
+    let job = this.classes.find(classe => classe.className == className);
+    return job ? job.level : 0;
+  }
+  levelUpClass(className, predilection = false ) {
+    let jobIndex = this.classes.findIndex(classe => classe.className == className);
+    if (jobIndex < 0) {
+      this.classes.push({ className, level: 1, predilection})
+      return 1;
+    }
+    else { return this.classes[jobIndex].level += 1; }
+  }
+
+  addFeature(feature){
+    this.features.push(feature);
+  }
+
   /**
    * get character left tasks
    */
