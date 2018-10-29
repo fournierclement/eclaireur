@@ -1,810 +1,889 @@
 {
   "interactionModel": {
-      "languageModel": {
-          "invocationName": "eclaireur",
-          "intents": [
-              {
-                  "name": "AMAZON.CancelIntent",
-                  "samples": [
-                      "annule"
-                  ]
-              },
-              {
-                  "name": "AMAZON.HelpIntent",
-                  "samples": [
-                      "aide moi",
-                      "que puis-je faire",
-                      "aide-moi"
-                  ]
-              },
-              {
-                  "name": "AMAZON.StopIntent",
-                  "samples": [
-                      "stop",
-                      "arretons"
-                  ]
-              },
-              {
-                  "name": "AMAZON.NavigateHomeIntent",
-                  "samples": []
-              },
-              {
-                  "name": "MakeClassIntent",
-                  "slots": [
-                      {
-                          "name": "className",
-                          "type": "ClassePossible",
-                          "samples": [
-                              "faire un {className}",
-                              "un {className}",
-                              "Je voudrais faire un {className}",
-                              "{className}"
-                          ]
-                      },
-                      {
-                          "name": "typeArme",
-                          "type": "TypeArme"
-                      },
-                      {
-                          "name": "domaine",
-                          "type": "Domaine"
-                      },
-                      {
-                          "name": "ecoleMagique",
-                          "type": "EcoleMagique"
-                      }
-                  ],
-                  "samples": [
-                      "choix de classe",
-                      "créer une classe",
-                      "faire {className}",
-                      "créer",
-                      "créer {className}"
-                  ]
-              },
-              {
-                  "name": "LevelUpIntent",
-                  "slots": [
-                      {
-                          "name": "className",
-                          "type": "ClassePossible",
-                          "samples": [
-                              "je veux créer un {className}",
-                              "{className}"
-                          ]
-                      }
-                  ],
-                  "samples": [
-                      "monter niveau",
-                      "niveau suivant {className}",
-                      "niveau {className}"
-                  ]
-              },
-              {
-                  "name": "DescriptionClass",
-                  "slots": [],
-                  "samples": [
-                      "décris mon personnage",
-                      "description"
-                  ]
-              },
-              {
-                  "name": "addSkillPoints",
-                  "slots": [
-                      {
-                          "name": "rank_up",
-                          "type": "AMAZON.NUMBER"
-                      },
-                      {
-                          "name": "skill",
-                          "type": "skill"
-                      },
-                      {
-                          "name": "to_rank",
-                          "type": "AMAZON.NUMBER"
-                      },
-                      {
-                          "name": "skill_type",
-                          "type": "skill_type"
-                      }
-                  ],
-                  "samples": [
-                      "{rank_up}",
-                      "mets {rank_up} en {skill}",
-                      "rajoute {rank_up} en {skill}",
-                      "augmente {skill}  de {rank_up}",
-                      "{skill_type}",
-                      "passe {skill} à {to_rank}",
-                      "augmente {skill} jusqu'à {to_rank}",
-                      "augmente {skill} à {to_rank}",
-                      "monte {skill} à {to_rank}",
-                      "monte {skill} ",
-                      "investi {rank_up} en {skill}",
-                      "ajoute {rank_up} en {skill}",
-                      "compétence"
-                  ]
-              },
-              {
-                  "name": "OpenCharacter",
-                  "slots": [
-                      {
-                          "name": "character_name",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "{character_name}",
-                              "ouvre {character_name}"
-                          ]
-                      }
-                  ],
-                  "samples": [
-                      "ouvre",
-                      "ouvre un personnage",
-                      "ouvrir un personnage",
-                      "ouvrir",
-                      "Ouvre {character_name}"
-                  ]
-              },
-              {
-                  "name": "NewCharacter",
-                  "slots": [],
-                  "samples": [
-                      "Nouveau personnage"
-                  ]
-              }
+    "languageModel": {
+      "invocationName": "eclaireur",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": [
+            "annule"
+          ]
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "aide moi",
+            "que puis-je faire",
+            "aide-moi"
+          ]
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": [
+            "stop",
+            "arretons"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "MakeClassIntent",
+          "slots": [
+            {
+              "name": "className",
+              "type": "ClassePossible",
+              "samples": [
+                "faire un {className}",
+                "un {className}",
+                "Je voudrais faire un {className}",
+                "{className}"
+              ]
+            },
+            {
+              "name": "typeArme",
+              "type": "TypeArme"
+            },
+            {
+              "name": "domaine",
+              "type": "Domaine"
+            },
+            {
+              "name": "ecoleMagique",
+              "type": "EcoleMagique"
+            }
           ],
-          "types": [
-              {
-                  "name": "skill",
-                  "values": [
-                      {
-                          "name": {
-                              "value": "vol",
-                              "synonyms": [
-                                  "le vol"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "objects magiques",
-                              "synonyms": [
-                                  "l'utilisation d'objets magiques",
-                                  "les objets magiques",
-                                  "utilisation d'objets magiques"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "survie",
-                              "synonyms": [
-                                  "la survie"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "sabotage",
-                              "synonyms": [
-                                  "la survie"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "psychologie",
-                              "synonyms": [
-                                  "la psychologie"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "premiers secours",
-                              "synonyms": [
-                                  "les premiers secours"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "perception",
-                              "synonyms": [
-                                  "la perception"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "natation",
-                              "synonyms": [
-                                  "la natation"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "linguistique",
-                              "synonyms": [
-                                  "langages",
-                                  "les langages",
-                                  "langue",
-                                  "les langues",
-                                  "la linguistique"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "intimidation",
-                              "synonyms": [
-                                  "l'intimidation"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "évasion",
-                              "synonyms": [
-                                  "l'évasion"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "estimation",
-                              "synonyms": [
-                                  "l'estimation"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "escamotage",
-                              "synonyms": [
-                                  "l'escamotage"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "escalade",
-                              "synonyms": [
-                                  "l'escalade"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "équitation",
-                              "synonyms": [
-                                  "l'équitation"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "dressage",
-                              "synonyms": [
-                                  "le dressage"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "discrétion",
-                              "synonyms": [
-                                  "la discrétion"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "diplomatie",
-                              "synonyms": [
-                                  "la diplomatie"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "déguisement",
-                              "synonyms": [
-                                  "le déguisement"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "religion",
-                              "synonyms": [
-                                  "la religion",
-                                  "connaissance religion"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "plans",
-                              "synonyms": [
-                                  "les plans",
-                                  "connaissance plans"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "noblesse",
-                              "synonyms": [
-                                  "la noblesse",
-                                  "connaissance noblesse"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "nature",
-                              "synonyms": [
-                                  "la nature",
-                                  "connaissance nature"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "mystères",
-                              "synonyms": [
-                                  "les mystères",
-                                  "connaissance mystères"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "ingénierie",
-                              "synonyms": [
-                                  "l'ingénierie",
-                                  "connaissance ingénierie"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "histoire",
-                              "synonyms": [
-                                  "l'histoire",
-                                  "connaissance histoire"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "géographie",
-                              "synonyms": [
-                                  "la géographie",
-                                  "connaissance géographie"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "folklore local",
-                              "synonyms": [
-                                  "le folklore local",
-                                  "le folklore",
-                                  "connaissance folklore",
-                                  "folklore",
-                                  "connaissance folklore local"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "exploration souterraine",
-                              "synonyms": [
-                                  "l'exploration souterraine",
-                                  "l'exploration",
-                                  "exploration",
-                                  "connaissance exploration",
-                                  "connaissance exploration souterraine"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "bluff",
-                              "synonyms": [
-                                  "le bluff"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "art de la magie",
-                              "synonyms": [
-                                  "l'art de la magie",
-                                  "connaissance magie"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "acrobatie",
-                              "synonyms": [
-                                  "l'acrobatie"
-                              ]
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "skill_type",
-                  "values": [
-                      {
-                          "name": {
-                              "value": "compétences utilitaires",
-                              "synonyms": [
-                                  "utilitaires"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "compétences de connaissances",
-                              "synonyms": [
-                                  "connaissances"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "compétences sociales",
-                              "synonyms": [
-                                  "sociales"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "compétences physiques",
-                              "synonyms": [
-                                  "physiques"
-                              ]
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "ClassePossible",
-                  "values": [
-                      {
-                          "name": {
-                              "value": "prêtre"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "mage",
-                              "synonyms": [
-                                  "magicien"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "guerrier"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "TypeArme",
-                  "values": [
-                      {
-                          "name": {
-                              "value": "bâton"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "poignard"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "marteau"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "arme naturelle"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "lance"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "arme double"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "lame lourde"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "lame légère"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "arme de moine"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "katana"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "arme de jet"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "hache"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "arme de combat rapproché"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "fouet"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "arme d'hast"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "arme a feu"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "fléau"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "engin de siège"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "arc"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "cimeterre"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "arbalète"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "Domaine",
-                  "values": [
-                      {
-                          "name": {
-                              "value": "guerre"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "artisanat"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "guérison"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "air"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "EcoleMagique",
-                  "values": [
-                      {
-                          "name": {
-                              "value": "abjuration"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "terre"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "feu"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "eau"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "air"
-                          }
-                      }
-                  ]
-              }
+          "samples": [
+            "choix de classe",
+            "créer une classe",
+            "faire {className}",
+            "créer",
+            "créer {className}"
           ]
-      },
-      "dialog": {
-          "intents": [
-              {
-                  "name": "OpenCharacter",
-                  "confirmationRequired": false,
-                  "prompts": {},
-                  "slots": [
-                      {
-                          "name": "character_name",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.421562492942.1220492298751"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "LevelUpIntent",
-                  "confirmationRequired": false,
-                  "prompts": {},
-                  "slots": [
-                      {
-                          "name": "className",
-                          "type": "ClassePossible",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.526392104239.393711676074"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "MakeClassIntent",
-                  "confirmationRequired": false,
-                  "prompts": {},
-                  "slots": [
-                      {
-                          "name": "className",
-                          "type": "ClassePossible",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.1185467450751.962518580277"
-                          }
-                      },
-                      {
-                          "name": "typeArme",
-                          "type": "TypeArme",
-                          "confirmationRequired": false,
-                          "elicitationRequired": false,
-                          "prompts": {}
-                      },
-                      {
-                          "name": "domaine",
-                          "type": "Domaine",
-                          "confirmationRequired": false,
-                          "elicitationRequired": false,
-                          "prompts": {}
-                      },
-                      {
-                          "name": "ecoleMagique",
-                          "type": "EcoleMagique",
-                          "confirmationRequired": false,
-                          "elicitationRequired": false,
-                          "prompts": {}
-                      }
-                  ]
-              }
+        },
+        {
+          "name": "LevelUpIntent",
+          "slots": [
+            {
+              "name": "className",
+              "type": "ClassePossible",
+              "samples": [
+                "je veux créer un {className}",
+                "{className}"
+              ]
+            }
+          ],
+          "samples": [
+            "monter niveau",
+            "niveau suivant {className}",
+            "niveau {className}"
           ]
-      },
-      "prompts": [
-          {
-              "id": "Elicit.Slot.421562492942.1220492298751",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "Quel personnage voulez vous ouvrir ?"
-                  }
+        },
+        {
+          "name": "DescriptionClass",
+          "samples": [
+            "décris mon personnage",
+            "description"
+          ]
+        },
+        {
+          "name": "addSkillPoints",
+          "slots": [
+            {
+              "name": "rank_up",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "jusqu'à {to_rank}",
+                "passe à {to_rank} rangs",
+                "passe à {to_rank} ",
+                "{rank_up} points",
+                "{rank_up}",
+                "ajoute {rank_up} points",
+                "ajoute {rank_up}",
+                "monte de {rank_up} points",
+                "monte de {rank_up} "
               ]
-          },
-          {
-              "id": "Elicit.Slot.597061663011.650966818120",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "Quelle classe voulez vous créer ?"
-                  }
+            },
+            {
+              "name": "skill",
+              "type": "skill",
+              "samples": [
+                "{skill_type}",
+                "{skill}",
+                "en {skill}",
+                "dans {skill_type}",
+                "dans {skill}",
+                "dans des {skill_type}"
               ]
-          },
-          {
-              "id": "Elicit.Slot.526392104239.393711676074",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "Quelle est la classe dont le niveau augmente ?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "Quelle classe voulez vous monter de niveau ?"
-                  }
+            },
+            {
+              "name": "to_rank",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "skill_type",
+              "type": "skill_type"
+            }
+          ],
+          "samples": [
+            "ouvre les compétences",
+            "mets {rank_up} en {skill}",
+            "rajoute {rank_up} en {skill}",
+            "augmente {skill}  de {rank_up}",
+            "{skill_type}",
+            "passe {skill} à {to_rank}",
+            "augmente {skill} jusqu'à {to_rank}",
+            "augmente {skill} à {to_rank}",
+            "monte {skill} à {to_rank}",
+            "monte {skill} ",
+            "investi {rank_up} en {skill}",
+            "ajoute {rank_up} en {skill}",
+            "compétence"
+          ]
+        },
+        {
+          "name": "OpenCharacter",
+          "slots": [
+            {
+              "name": "character_name",
+              "type": "AMAZON.FirstName",
+              "samples": [
+                "{character_name}",
+                "ouvre {character_name}"
               ]
-          },
-          {
-              "id": "Confirm.Slot.1115435327980.260570518419",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "Vous voulez créer {className} , c'est bien ça?"
-                  }
-              ]
-          },
-          {
-              "id": "Confirm.Slot.12228061988.1536465612919",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "{className} , c'est bien ça ?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1185467450751.962518580277",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "Quelle classe voulez vous créer ?"
-                  }
-              ]
-          },
-          {
-              "id": "Confirm.Intent.511202184492",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "voulez vous vraiment créer une classe ?"
-                  }
-              ]
-          }
+            }
+          ],
+          "samples": [
+            "ouvre",
+            "ouvre un personnage",
+            "ouvrir un personnage",
+            "ouvrir",
+            "Ouvre {character_name}"
+          ]
+        },
+        {
+          "name": "NewCharacter",
+          "samples": [
+            "Nouveau personnage"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "vol",
+                "synonyms": [
+                  "le vol"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "objects magiques",
+                "synonyms": [
+                  "l'utilisation d'objets magiques",
+                  "les objets magiques",
+                  "utilisation d'objets magiques"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "survie",
+                "synonyms": [
+                  "la survie"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "sabotage",
+                "synonyms": [
+                  "la survie"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "psychologie",
+                "synonyms": [
+                  "la psychologie"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "premiers secours",
+                "synonyms": [
+                  "les premiers secours"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "perception",
+                "synonyms": [
+                  "la perception"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "natation",
+                "synonyms": [
+                  "la natation"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "linguistique",
+                "synonyms": [
+                  "langages",
+                  "les langages",
+                  "langue",
+                  "les langues",
+                  "la linguistique"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "intimidation",
+                "synonyms": [
+                  "l'intimidation"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "évasion",
+                "synonyms": [
+                  "l'évasion"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "estimation",
+                "synonyms": [
+                  "l'estimation"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "escamotage",
+                "synonyms": [
+                  "l'escamotage"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "escalade",
+                "synonyms": [
+                  "l'escalade"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "équitation",
+                "synonyms": [
+                  "l'équitation"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "dressage",
+                "synonyms": [
+                  "le dressage"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "discrétion",
+                "synonyms": [
+                  "la discrétion"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "diplomatie",
+                "synonyms": [
+                  "la diplomatie"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "déguisement",
+                "synonyms": [
+                  "le déguisement"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "religion",
+                "synonyms": [
+                  "la religion",
+                  "connaissance religion"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "plans",
+                "synonyms": [
+                  "les plans",
+                  "connaissance plans"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "noblesse",
+                "synonyms": [
+                  "la noblesse",
+                  "connaissance noblesse"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "nature",
+                "synonyms": [
+                  "la nature",
+                  "connaissance nature"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "mystères",
+                "synonyms": [
+                  "les mystères",
+                  "connaissance mystères"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "ingénierie",
+                "synonyms": [
+                  "l'ingénierie",
+                  "connaissance ingénierie"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "histoire",
+                "synonyms": [
+                  "l'histoire",
+                  "connaissance histoire"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "géographie",
+                "synonyms": [
+                  "la géographie",
+                  "connaissance géographie"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "folklore local",
+                "synonyms": [
+                  "le folklore local",
+                  "le folklore",
+                  "connaissance folklore",
+                  "folklore",
+                  "connaissance folklore local"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "exploration souterraine",
+                "synonyms": [
+                  "l'exploration souterraine",
+                  "l'exploration",
+                  "exploration",
+                  "connaissance exploration",
+                  "connaissance exploration souterraine"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "bluff",
+                "synonyms": [
+                  "le bluff"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "art de la magie",
+                "synonyms": [
+                  "l'art de la magie",
+                  "connaissance magie"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "acrobatie",
+                "synonyms": [
+                  "l'acrobatie"
+                ]
+              }
+            }
+          ],
+          "name": "skill"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "compétences utilitaires",
+                "synonyms": [
+                  "des compétences utilitaires",
+                  "les compétences utilitaires",
+                  "utilitaires"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "compétences de connaissances",
+                "synonyms": [
+                  "des compétences de connaissances",
+                  "des connaissances",
+                  "les compétences de connaissances",
+                  "les connaissances",
+                  "connaissances"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "compétences sociales",
+                "synonyms": [
+                  "des compétences sociales",
+                  "les compétences sociales",
+                  "sociales"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "compétences physiques",
+                "synonyms": [
+                  "des compétences physiques",
+                  "les compétences physiques",
+                  "physiques"
+                ]
+              }
+            }
+          ],
+          "name": "skill_type"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "prêtre"
+              }
+            },
+            {
+              "name": {
+                "value": "mage",
+                "synonyms": [
+                  "magicien"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "guerrier"
+              }
+            }
+          ],
+          "name": "ClassePossible"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "bâton"
+              }
+            },
+            {
+              "name": {
+                "value": "poignard"
+              }
+            },
+            {
+              "name": {
+                "value": "marteau"
+              }
+            },
+            {
+              "name": {
+                "value": "arme naturelle"
+              }
+            },
+            {
+              "name": {
+                "value": "lance"
+              }
+            },
+            {
+              "name": {
+                "value": "arme double"
+              }
+            },
+            {
+              "name": {
+                "value": "lame lourde"
+              }
+            },
+            {
+              "name": {
+                "value": "lame légère"
+              }
+            },
+            {
+              "name": {
+                "value": "arme de moine"
+              }
+            },
+            {
+              "name": {
+                "value": "katana"
+              }
+            },
+            {
+              "name": {
+                "value": "arme de jet"
+              }
+            },
+            {
+              "name": {
+                "value": "hache"
+              }
+            },
+            {
+              "name": {
+                "value": "arme de combat rapproché"
+              }
+            },
+            {
+              "name": {
+                "value": "fouet"
+              }
+            },
+            {
+              "name": {
+                "value": "arme d'hast"
+              }
+            },
+            {
+              "name": {
+                "value": "arme a feu"
+              }
+            },
+            {
+              "name": {
+                "value": "fléau"
+              }
+            },
+            {
+              "name": {
+                "value": "engin de siège"
+              }
+            },
+            {
+              "name": {
+                "value": "arc"
+              }
+            },
+            {
+              "name": {
+                "value": "cimeterre"
+              }
+            },
+            {
+              "name": {
+                "value": "arbalète"
+              }
+            }
+          ],
+          "name": "TypeArme"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "guerre"
+              }
+            },
+            {
+              "name": {
+                "value": "artisanat"
+              }
+            },
+            {
+              "name": {
+                "value": "guérison"
+              }
+            },
+            {
+              "name": {
+                "value": "air"
+              }
+            }
+          ],
+          "name": "Domaine"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "abjuration"
+              }
+            },
+            {
+              "name": {
+                "value": "terre"
+              }
+            },
+            {
+              "name": {
+                "value": "feu"
+              }
+            },
+            {
+              "name": {
+                "value": "eau"
+              }
+            },
+            {
+              "name": {
+                "value": "air"
+              }
+            }
+          ],
+          "name": "EcoleMagique"
+        }
       ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "OpenCharacter",
+          "confirmationRequired": false,
+          "slots": [
+            {
+              "name": "character_name",
+              "type": "AMAZON.FirstName",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.421562492942.1220492298751"
+              }
+            }
+          ]
+        },
+        {
+          "name": "LevelUpIntent",
+          "confirmationRequired": false,
+          "slots": [
+            {
+              "name": "className",
+              "type": "ClassePossible",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.526392104239.393711676074"
+              }
+            }
+          ]
+        },
+        {
+          "name": "MakeClassIntent",
+          "confirmationRequired": false,
+          "slots": [
+            {
+              "name": "className",
+              "type": "ClassePossible",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1185467450751.962518580277"
+              }
+            },
+            {
+              "name": "typeArme",
+              "type": "TypeArme",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            },
+            {
+              "name": "domaine",
+              "type": "Domaine",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            },
+            {
+              "name": "ecoleMagique",
+              "type": "EcoleMagique",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            }
+          ]
+        },
+        {
+          "name": "addSkillPoints",
+          "confirmationRequired": false,
+          "slots": [
+            {
+              "name": "rank_up",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.318385025337.366095190150"
+              }
+            },
+            {
+              "name": "skill",
+              "type": "skill",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.318385025337.1028707353752"
+              }
+            },
+            {
+              "name": "to_rank",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            },
+            {
+              "name": "skill_type",
+              "type": "skill_type",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.421562492942.1220492298751",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Quel personnage voulez vous ouvrir ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.597061663011.650966818120",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Quelle classe voulez vous créer ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.526392104239.393711676074",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Quelle est la classe dont le niveau augmente ?"
+          },
+          {
+            "type": "PlainText",
+            "value": "Quelle classe voulez vous monter de niveau ?"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Slot.1115435327980.260570518419",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Vous voulez créer {className} , c'est bien ça?"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Slot.12228061988.1536465612919",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "{className} , c'est bien ça ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1185467450751.962518580277",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Quelle classe voulez vous créer ?"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Intent.511202184492",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "voulez vous vraiment créer une classe ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.318385025337.366095190150",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Jusqu'à combien voulez-vous augmenter dans {skill}"
+          },
+          {
+            "type": "PlainText",
+            "value": "combien de points voulez vous investir ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.318385025337.1028707353752",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Dans quelle compétence voulez-vous investir ?"
+          }
+        ]
+      }
+    ]
   }
 }

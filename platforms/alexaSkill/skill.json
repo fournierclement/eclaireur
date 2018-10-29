@@ -1,21 +1,20 @@
 {
-	"manifest": {
-		"publishingInformation": {
-			"locales": {
-				"fr-FR": {
-					"name": "eclaireur"
-				}
-			}
-		},
-		"apis": {
-			"custom": {
-				"endpoint": {
-					"sslCertificateType": "Wildcard",
-					"uri": "arn:aws:lambda:eu-west-1:490881469487:function:eclaireur-skill"
-				},
-				"interfaces": []
-			}
-		},
-		"manifestVersion": "1.0"
-	}
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "fr-FR": {
+          "name": "eclaireur"
+        }
+      }
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:eu-west-1:490881469487:function:eclaireur-skill"
+        },
+        "interfaces": []
+      }
+    },
+    "manifestVersion": "1.0"
+  }
 }
