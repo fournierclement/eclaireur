@@ -34,6 +34,8 @@ class Character {
     this.TODO = completeJson.TODO;
   }
   
+
+
   /**
    * get caracteristic modifer
    */
@@ -104,6 +106,28 @@ class Character {
     }, 0);
   }
   
+
+  /**
+   * gets the name of the capacity from the name of the class
+   * @param {*} className the name of the class.
+   */
+  getCapacityFromClass(className){
+    let capNumber = "capacity"+ this.classLevel(className);
+    let classcap = rules.classes[className];
+    return classcap[capNumber]
+  }
+
+  /**
+   * gets the question to ask the user to get the capacity of the class.
+   * @param {*} className the name of the class
+   */
+  getCapacityPromptFromClass(className){
+    let promptNumber = "prompt"+this.classLevel(className);
+    let classcap = rules.classes[className];
+    return classcap[promptNumber]
+  }
+
+
   /**
    * prompt toDo
    */

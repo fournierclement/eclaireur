@@ -54,57 +54,57 @@ module.exports = {
     !this.alexaSkill().hasSlotValue('ecoleMagique') &&
     !this.alexaSkill().hasSlotValue('domaine'))
   ){
-    switch(classNameSlot) {
-      case "guerrier" :
-        this.alexaSkill().dialogElicitSlot('typeArme', 'Quelle compétence en arme votre guerrier souhaite-il acquérir ?');
-        break;
-      case "mage" :
-        this.alexaSkill().dialogElicitSlot('ecoleMagique', 'Quelle école de magie votre mage connait-il ?');
-        break;
-      case "prêtre" :
-        this.alexaSkill().dialogElicitSlot('domaine', 'Quel domaine votre prêtre suit-il ?');
-        break;
-      case "default" :
-        this.ask("Il semble qu'une erreur s'est produite quelque part, veuillez essayer autre chose.")
-        break;
-    }
-  } else {
+    this.alexaSkill().dialogElicitSlot(character.getCapacityFromClass(classNameSlot), character.getCapacityPromptFromClass(classNameSlot))
+} else {
     if(character.classLevel(classNameSlot) == 0 ){
       character.levelUpClass(classNameSlot, true);
-      speechOutput = "La classe " + classNameSlot + " vient d'être ajoutée à votre personnage. vous pouvez maintenant la monter de niveau ou faire autre chose, que voulez vous faire ?";
-
-      //A améliorer
-      let typeArmeSlot = this.getInput("typeArme").key;
-      let ecoleMagiqueSlot = this.getInput("ecoleMagique").key;
-      let domaineSlot = this.getInput("domaine").key;
-      if (typeArmeSlot) { character.addFeature({ name: "Entrainement aux armes", option: typeArmeSlot, class : true, bonusExt : 0})}
-      if (ecoleMagiqueSlot) { character.addFeature({ name: "Ecole de magie", option: ecoleMagiqueSlot, class : true, bonusExt : 0})}
-      if (domaineSlot) { character.addFeature({ name: "Domaine de pêtre", option: domaineSlot, class : true, bonusExt : 0})}
+      speechOutput =  character.name + " est maintenant " + classNameSlot + " de niveau " + character.classLevel(classNameSlot) + "." ;
+      if (this.alexaSkill().hasSlotValue("typeArme") && this.getInput("typeArme").key) { character.addFeature({ name: "Entrainement aux armes", option: this.getInput("typeArme").key, class : true, bonusExt : 0})}
+      if (this.alexaSkill().hasSlotValue("ecoleMagique")  && this.getInput("ecoleMagique").key) { character.addFeature({ name: "Ecole de magie", option: this.getInput("ecoleMagique").key, class : true, bonusExt : 0})}
+      if (this.alexaSkill().hasSlotValue("domaine")  && this.getInput("domaine").key) { character.addFeature({ name: "Domaine de prêtre", option: this.getInput("domaine").key, class : true, bonusExt : 0})}
       saveCharacter(this.user(), character);
     } else {
-      speechOutput = "La classe " + classNameSlot + " est déjà dans votre personnage. Voulez vous faire autre chose ?"
+      speechOutput = character.name + " est déjà un " + classNameSlot + " niveau " + character.classLevel(classNameSlot) + ". Voulez vous faire autre chose ?"
     }
     //Your custom intent handling goes here
-    this.ask(speechOutput);
+    this.ask(speechOutput)
     }
   },
   'LevelUpIntent': function () {
+
     const character = getCharacter(this.user(), this.getSessionAttribute("character_name"));
     //delegate to Alexa to collect all the required slot values
     if (!this.alexaSkill().isDialogCompleted()) {
       this.alexaSkill().dialogDelegate();
     } else {
       let classNameSlot = this.getInput("className").key;
-
-      if(character.classLevel(classNameSlot) > 0) {
-        let classLevel = character.levelUpClass( classNameSlot );
+      let classLevel = character.levelUpClass( classNameSlot );
+      let capacity = character.getCapacityFromClass(classNameSlot);
+      console.log(capacity)
+      if(capacity) {
+        this.alexaSkill().dialogElicitSlot(character.getCapacityFromClass(classNameSlot), character.getCapacityPromptFromClass(classNameSlot))
+      }
+      else 
+      {
+        if (this.alexaSkill().hasSlotValue("typeArme") && this.getInput("typeArme").key) { character.addFeature({ name: "Entrainement aux armes", option: this.getInput("typeArme").key, class : true, bonusExt : 0})}
+        if (this.alexaSkill().hasSlotValue("ecoleMagique")  && this.getInput("ecoleMagique").key) { character.addFeature({ name: "Ecole de magie", option: this.getInput("ecoleMagique").key, class : true, bonusExt : 0})}
+        if (this.alexaSkill().hasSlotValue("domaine")  && this.getInput("domaine").key) { character.addFeature({ name: "Domaine de prêtre", option: this.getInput("domaine").key, class : true, bonusExt : 0})}
         saveCharacter(this.user(), character);
-        speechOutput = "La classe " + classNameSlot + " vient d'être montée de niveau. Elle est maintenant niveau " + classLevel + ".";
-      } else {
-        speechOutput = "La classe " + classNameSlot + " n'est pas présente dans votre personnage, commencez par l'ajouter."
+        speechOutput = "Votre " + classNameSlot + " est maintenant niveau " + classLevel + ". Besoin d'autre chose ?";
+        this.ask(speechOutput)
       }
       //Your custom intent handling goes here
-      this.ask(speechOutput);
+
     }
-  }
+  },
+  "AMAZON.CancelIntent": function() {
+    this.followUpState("OpenedCharacter")
+    .toIntent("Unhandled");
+  },
+  "AMAZON.StopIntent": function() {
+    this.tell("Vos modifications ont bien étées prises en compte. A bientôt !")
+  },
+  "AMAZON.HelpIntent": function() {
+    this.ask("D'ici, vous pouvez ajouter des classes à votre personnage ou les monter de niveau.")
+  },
 }

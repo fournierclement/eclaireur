@@ -1,8 +1,8 @@
 {
   "classes": {
-    "guerrier": { "skillByLevel": 2 },
-    "mage": { "skillByLevel": 2 },
-    "prêtre": { "skillByLevel": 2 }
+    "guerrier": { "skillByLevel": 2, "capacity1" : "TypeArme", "prompt1" : "Quelle compétence en arme souhaite-il acquérir ?" },
+    "mage": { "skillByLevel": 2, "capacity1" : "ecoleMagique", "prompt1" : "Quelle école de magie connait-il ?"},
+    "prêtre": { "skillByLevel": 2, "capacity1" : "domaine", "prompt1": "Quel domaine suit-il ?"}
   },
   "skills": {
     "acrobatie": {"mod":"dex", "trained": false},
