@@ -20,10 +20,16 @@ const app = new App(config);
 // =================================================================================
 
 app.setHandler({
+  /**
+   * On Launch intent
+  */
   'LAUNCH': function() {
     this.followUpState(null)
     .ask("Voulez vous ouvrir un personnage ou bien en créer un nouveau ?");
   },
+  /**
+   * Open a character, ask for the name if not provided.
+   */
   'OpenCharacter': function() {
     if (!this.alexaSkill().hasSlotValue('character_name')) {
       this.alexaSkill().dialogElicitSlot("character_name","Quel est le nom du personnage à ouvrir?");

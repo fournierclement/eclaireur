@@ -52,27 +52,38 @@ const skillTypes = {
 module.exports = {
   "addSkillPoints": function () {
     const skillPointLeft = character.countSkillMax() - character.countSkillSpend();
-    if ((this.alexaSkill().hasSlotValue("skill") ||
-      this.getSessionAttribute("skill")) && (
+    if (this.alexaSkill().hasSlotValue("skill") && this.getInput("skill").key && (
         this.alexaSkill().hasSlotValue("rank_up") ||
         this.alexaSkill().hasSlotValue("to_rank"))
     ) {
-      let skill = this.alexaSkill().hasSlotValue("skill").key || this.getSessionAttribute("skill");
-      let ranks = this.getInput("to_rank").value || "x + " + this.getInput("rank_up").value;
-      console.log(this.getInputs());
-      this.tell(`${this.getSessionAttribute("character_name")} a maintenant ${ranks} rang en ${skill}`)
-    } else if (this.alexaSkill().hasSlotValue("skill")) {
-      console.log(this.getInput("skill"));
-      this.setSessionAttribute("skill", this.getInput("skill").key);
-      this.ask(`
-        ${this.getSessionAttribute("character_name")}
-        a x rangs en ${this.getSessionAttribute("skill")} . 
-        Combien de points voulez vous investir dans cette compétence ?`);
-    } else if (this.alexaSkill().hasSlotValue("skill_type")) {
-      console.log(this.getInput("skill_type"));
+      let skill = this.getInput("skill").key;
+      let ranks = this.getInput("to_rank").value || ("x + " + this.getInput("rank_up").value);
+      this.tell(`${this.getSessionAttribute("character_name")} a maintenant ${ranks} rangs en ${skill}`)
+
+      /**
+       * Known Skill provided
+      */
+    } else if (this.alexaSkill().hasSlotValue("skill") && this.getInput("skill").key) {
+
       
+      this.alexaSkill()
+      .dialogElicitSlot(
+        'rank_up',
+        `${this.getSessionAttribute("character_name")}
+        a x rangs en ${this.getInput("skill").key} . 
+        Combien de points voulez vous investir dans cette compétence ?`);
+
+      /**
+       * Known Skill_type provided
+       */
+    } else if (this.alexaSkill().hasSlotValue("skill_type") && this.getInput("skill_type").key) {
       let skill_type = this.getInput("skill_type").key;
-      this.ask(`Les ${skill_type} sont ${skillTypes[skill_type].join(", ")} .`);
+      this.alexaSkill()
+      .dialogElicitSlot('skill', `Les ${skill_type} sont ${skillTypes[skill_type].join(", ")} .`);
+
+      /**
+       * No skill provided :
+       */
     } else {
       this.ask(
         `Il reste ${skillPointLeft} points de compétence à placer,
