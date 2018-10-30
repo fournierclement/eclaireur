@@ -39,7 +39,7 @@ const races = {
       "compétences": {
         "perception": 2,
       },
-    }
+    },
   },
   "nain": {
     "vitesse": 6,
@@ -75,11 +75,8 @@ module.exports = {
       this.followUpState("OpenedCharacter")
       .ask(`${character.name} a pour race : ${race}`)
     } else {
-      this.ask(
-        `Les races disponibles sont ${Object.keys(races).join(", ")}.
-        Veuillez choisir une race.`
-      );
+      this.alexaSkill()
+      .dialogElicitSlot('race_type', `Les races disponibles sont ${Object.keys(races).join(", ")}. Veuillez choisir une race.`);
     }
-    // TODO : leave Intent
   }
 }

@@ -2,12 +2,12 @@ const character = require("./character");
 const {getCharacter, saveCharacter} = require("./character");
 
 const caracteristics = {
-  "force": ,
-  "dextérité": ,
-  "constitution": ,
-  "intelligence": ,
-  "sagesse": ,
-  "charisme":
+  "force": "",
+  "dextérité": "",
+  "constitution": "",
+  "intelligence": "",
+  "sagesse": "",
+  "charisme": ""
 }
 
 /**
@@ -29,25 +29,34 @@ const rollCaracteristic = () => {
 module.exports = {
   "RollCaracteristicsIntent": function () {
     const character = getCharacter(this.user(), this.getSessionAttribute("character_name"));
-    const newCaracs = {
-      "force" : rollCaracteristic(),
-      "dextérité" : rollCaracteristic(),
-      "constitution" : rollCaracteristic(),
-      "intelligence" : rollCaracteristic(),
-      "sagesse" : rollCaracteristic(),
-      "charisme" : rollCaracteristic()
-    };
-    // Prompt voici les caractéristiques que j'ai roll pour Vous
-    this.ask(
-      `Vos caractéristiques sont les suivantes.
-      Votre force est de ${newCaracs.force}.
-      Votre dextérité est de ${newCaracs.dextérité}.
-      Votre constitution est de ${newCaracs.constitution}.
-      Votre intelligence est de ${newCaracs.intelligence}.
-      Votre sagesse est de ${newCaracs.sagesse}.
-      Votre charisme est de ${newCaracs.charisme}.`
-    );
-    // Voulez vous les garder
-    // TODO: 
+    if (this.alexaSkill().getIntentConfirmationStatus() !== 'CONFIRMED') {
+      const newCaracs = {
+        "force" : rollCaracteristic(),
+        "dextérité" : rollCaracteristic(),
+        "constitution" : rollCaracteristic(),
+        "intelligence" : rollCaracteristic(),
+        "sagesse" : rollCaracteristic(),
+        "charisme" : rollCaracteristic()
+      };
+      this.setSessionAttribute("caracteristics", newCaracs);
+      // Prompt voici les caractéristiques que j'ai roll pour Vous
+      this.ask(
+        `Vos caractéristiques sont les suivantes.
+        Votre force est de ${newCaracs.force}.
+        Votre dextérité est de ${newCaracs.dextérité}.
+        Votre constitution est de ${newCaracs.constitution}.
+        Votre intelligence est de ${newCaracs.intelligence}.
+        Votre sagesse est de ${newCaracs.sagesse}.
+        Votre charisme est de ${newCaracs.charisme}.`
+      );
+      this.alexaSkill().dialogConfirmIntent(
+        'Est ce que ces caractéristiques sont satisfaisantes ?'
+      );
+    } else {
+      const caracs = this.getSessionAttribute("caracteristics");
+      character.setCaracteristics(caracs);
+      saveCharacter(this.user(), character);
+      this.followUpState("OpenedCharacter");
+    }
   },
 }

@@ -67,12 +67,32 @@ class Character {
     else { return this.classes[jobIndex].level += 1; }
   }
 
+  /**
+   * Add a feature to a character
+   */
   addFeature(feature){
     this.features.push(feature);
   }
 
+  /**
+   * Set the race of a character
+   */
   setRace(race_type){
     this.race = race_type;
+  }
+
+  /**
+   * Set the caracteristics for a character
+   */
+  setCaracteristics(caracteristics){
+    this.caracteristics = {
+      for: caracteristics.force,
+      dex: caracteristics.dextérité,
+      const: caracteristics.constitution,
+      int: caracteristics.intelligence,
+      sag: caracteristics.sagesse,
+      cha: caracteristics.charisme
+    };
   }
 
   /**
