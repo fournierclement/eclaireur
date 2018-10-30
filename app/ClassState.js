@@ -50,7 +50,7 @@ module.exports = {
     this.alexaSkill().dialogDelegate();
   } else if(
     this.alexaSkill().isDialogCompleted() && 
-    (!this.alexaSkill().hasSlotValue('typeArme') && 
+    (!classNameSlot === "guerrier" && 
     !this.alexaSkill().hasSlotValue('ecoleMagique') &&
     !this.alexaSkill().hasSlotValue('domaine'))
   ){
@@ -80,7 +80,6 @@ module.exports = {
       let classNameSlot = this.getInput("className").key;
       let classLevel = character.levelUpClass( classNameSlot );
       let capacity = character.getCapacityFromClass(classNameSlot);
-      console.log(capacity)
       if(capacity) {
         this.alexaSkill().dialogElicitSlot(character.getCapacityFromClass(classNameSlot), character.getCapacityPromptFromClass(classNameSlot))
       }
