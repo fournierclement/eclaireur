@@ -53,6 +53,29 @@ app.setHandler({
       }
     }
   },
+
+  'Unhandled': function(){
+    this.toIntent("AMAZON.HelpIntent")
+  },
+  "AMAZON.HelpIntent": function () {
+    let characters = Object.keys(this.user().data.characters);
+    if( characters != false ){
+      this.ask(
+        `Vous avez ${characters.length} que voici: ${characters.join(', ')}
+        Vous pouvez ouvrir un de ces personnages ou bien en créer un nouveau.
+        `
+      );
+    } else {
+      this.ask(`Vous n'avez pas encore de personnage, n'hésitez pas à en créer un.`);
+    }
+  },
+  "AMAZON.CancelIntent": function () {
+    this.toIntent("AMAZON.StopIntent")
+  },
+  "AMAZON.StopIntent": function () {
+    this.tell("Bonne journée.")
+  },
+
   "NewCharacter": require("./NewCharacterState"),
   "OpenedCharacter": require("./OpenedCharacterState"),
 });
