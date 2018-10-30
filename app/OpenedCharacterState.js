@@ -17,7 +17,7 @@ module.exports = {
     let character = getCharacter(this.user(), this.getSessionAttribute("character_name"));
     let prompt = `Vous travaillez sur ${character.name}<break time="1s"/>. ${character.promptTODO}`;
     this
-    .followUpState(this.getState() + '.SkillState')
+    .followUpState(this.getState())
     .ask(prompt);
   },
 
