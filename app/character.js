@@ -182,9 +182,9 @@ const getCharacter = (user, character_name) => {
 
 const saveCharacter = (user, character) => {
   if( !user.characters ){
-    user.data.characters = { [character.name]: character};
+    user.data.characters = { [character.name]: character.toJSON};
   } else {
-    user.data.characters[character.name] = character;
+    user.data.characters[character.name] = character.toJSON;
   }
 }
 
