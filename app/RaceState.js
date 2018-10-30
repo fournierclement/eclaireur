@@ -1,4 +1,4 @@
-const {getCharacter, saveCharacter} = require("./character");
+const { Character } = require("./character");
 
 const races = {
   "humain": {
@@ -67,13 +67,13 @@ const races = {
 
 module.exports = {
   "ChooseRaceIntent": function () {
-    const character = getCharacter(this.user(), this.getSessionAttribute("character_name"));
+    const character = new Character(this.getSessionAttribute("newCharacter"));
     if (this.alexaSkill().hasSlotValue("race_type") && this.getInput("race_type").key ) {
       let race = this.getInput("race_type").key;
       character.setRace(race);
-      saveCharacter(this.user(), character);
-      this.followUpState("OpenedCharacter")
-      .ask(`${character.name} a pour race : ${race}`)
+      this.setSessionAttribute("newCharacter", character.toJSON);
+      this.followUpState("NewCharacter")
+      .toIntent("Unhandled");
     } else {
       this.alexaSkill()
       .dialogElicitSlot('race_type', `Les races disponibles sont ${Object.keys(races).join(", ")}. Veuillez choisir une race.`);

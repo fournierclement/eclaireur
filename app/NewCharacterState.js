@@ -2,22 +2,54 @@ const {Character, saveCharacter } = require('./character');
 
 module.exports = {
   "YesIntent": function(){
-    let character_name = this.getSessionAttribute('character_name');
-    let character = new Character({name: character_name});
-    saveCharacter(this.user(), character);
-    this.followUpState("OpenedCharacter")
-      .ask(`Le personnage de ${character_name} vient d'être ajouté à votre collection. ${character.promptTODO}`)
+    let character = this.getSessionAttribute("newCharacter");
+    if (character) {
+      this.followUpState(this.getState())
+      .toIntent("Unhandled");
+    } else {
+      let character_name = this.getSessionAttribute('character_name');
+      let character = new Character({name: character_name});
+      this.setSessionAttribute("newCharacter", character);
+      this.followUpState(this.getState())
+      .toIntent("Unhandled");
+    }
   },
   "NoIntent": function(){
     this.toIntent("AMAZON.CancelIntent");
   },
+
+  "ChooseRaceIntent": require("./RaceState")["ChooseRaceIntent"],
+  "RollCaracteristicsIntent": require("./CaracteristicsState")["RollCaracteristicsIntent"],
+
   'Unhandled': function(){
-    this.toIntent("AMAZON.HelpIntent");
+    let characterJSON = this.getSessionAttribute("newCharacter");
+    let character = characterJSON && (new Character(characterJSON));
+    if (character && character.todo) {
+      let promptTODO = ""
+      if (character.todo.race) { promptTODO += ", choisissez une race"; }
+      if (character.todo.gender) { promptTODO += ", choisissez un genre"; }
+      if (character.todo.caracteristics) { promptTODO += ", lancer ses caracs"; }
+      this.followUpState(this.getState())
+      .ask(`
+        Vous êtes en train de créer ${character.name}.
+        Pour finir${promptTODO}.
+      `)
+    } else if (character && !character.todo) {
+      this.followUpState(this.getState())
+        .ask(`Voulez-vous créer le personnage de ${character.name} ?`);
+    } else {
+      saveCharacter(this.user(), character);
+      this.followUpState("OpenedCharacter")
+      .ask(`
+      Le personnage de ${character.name} vient d'être ajouté dans votre collection,
+      vous pouvez désormais lui ajouter une classes ou quitter.
+      `)
+    }
   },
+
   "AMAZON.HelpIntent": function () {
-    let character_name = this.getSessionAttribute('character_name');
     this.followUpState(this.getState())
-    .ask(`Voulez-vous créer le personnage de ${character_name} ?`)
+    .toIntent("Unhandled");
   },
   "AMAZON.CancelIntent": function () {
     this.setSessionAttribute("character_name", undefined);

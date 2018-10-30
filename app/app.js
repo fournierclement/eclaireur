@@ -1,5 +1,5 @@
 'use strict';
-const {getCharacter} = require("./character");
+const {getCharacter, Character} = require("./character");
 
 // =================================================================================
 // App Configuration
@@ -54,16 +54,30 @@ app.setHandler({
     }
   },
 
+  "createCharacter": function() {
+    if(this.alexaSkill().hasSlotValue("character_name")){
+      let character_name = this.getInput("character_name").value;
+      let character = new Character({name: character_name});
+      this.setSessionAttribute("newCharacter", character);
+      this.followUpState("NewCharacter")
+      .toIntent("Unhandled");
+    } else {
+      this.alexaSkill().dialogElicitSlot(
+        "character_name",
+        "Comment voulez-vous appeller votre nouveau personnage?"
+      );
+    }
+  },
+
   'Unhandled': function(){
     this.toIntent("AMAZON.HelpIntent")
   },
   "AMAZON.HelpIntent": function () {
-    let characters = Object.keys(this.user().data.characters);
+    let characters = Object.keys(this.user().data.characters || {});
     if( characters != false ){
       this.ask(
         `Vous avez ${characters.length} que voici: ${characters.join(', ')}
-        Vous pouvez ouvrir un de ces personnages ou bien en créer un nouveau.
-        `
+        Vous pouvez ouvrir un de ces personnages ou bien en créer un nouveau.`
       );
     } else {
       this.ask(`Vous n'avez pas encore de personnage, n'hésitez pas à en créer un.`);

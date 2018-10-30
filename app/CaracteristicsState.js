@@ -1,5 +1,4 @@
-const character = require("./character");
-const {getCharacter, saveCharacter} = require("./character");
+const {Character} = require("./character");
 
 const caracteristics = {
   "force": "",
@@ -28,7 +27,7 @@ const rollCaracteristic = () => {
 
 module.exports = {
   "RollCaracteristicsIntent": function () {
-    const character = getCharacter(this.user(), this.getSessionAttribute("character_name"));
+    const character = new Character(this.getSessionAttribute("newCharacter"));
     if (this.alexaSkill().getIntentConfirmationStatus() !== 'CONFIRMED') {
       const newCaracs = {
         "force" : rollCaracteristic(),
@@ -55,8 +54,9 @@ module.exports = {
     } else {
       const caracs = this.getSessionAttribute("caracteristics");
       character.setCaracteristics(caracs);
-      saveCharacter(this.user(), character);
-      this.followUpState("OpenedCharacter");
+      this.setSessionAttribute("newCharacter", character.toJSON);
+      this.followUpState("NewCharacter")
+      .toIntent("Unhandled");
     }
   },
 }

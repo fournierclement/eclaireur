@@ -161,8 +161,21 @@
           ]
         },
         {
-          "name": "NewCharacter",
+          "name": "createCharacter",
+          "slots": [
+            {
+              "name": "character_name",
+              "type": "AMAZON.FirstName",
+              "samples": [
+                "Appelons la {character_name}",
+                "Appelons le {character_name}",
+                "je vais l'appeler {character_name}",
+                "{character_name}"
+              ]
+            }
+          ],
           "samples": [
+            "crée {character_name}",
             "Crée nouveau personnage",
             "Crée un personnage",
             "Crée un nouveau personnage",
@@ -253,6 +266,9 @@
         {
           "name": "RollCaracteristicsIntent",
           "samples": [
+            "lance les caracteristiques",
+            "lance les caracs",
+            "lance les stats",
             "Passe aux caractéristiques",
             "Tire mes caractéristiques"
           ]
@@ -1038,6 +1054,21 @@
           "prompts": {
             "confirmation": "Confirm.Intent.516048183438"
           }
+        },
+        {
+          "name": "createCharacter",
+          "confirmationRequired": false,
+          "slots": [
+            {
+              "name": "character_name",
+              "type": "AMAZON.FirstName",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.379162732300.305166393781"
+              }
+            }
+          ]
         }
       ],
       "delegationStrategy": "SKILL_RESPONSE"
@@ -1156,6 +1187,15 @@
           {
             "type": "PlainText",
             "value": "Êtes vous satisfait de vos caractéristiques ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.379162732300.305166393781",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Comment voulez-vous appeler votre nouveau personnage ?"
           }
         ]
       }

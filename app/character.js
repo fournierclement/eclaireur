@@ -5,19 +5,13 @@ const defaultCharacter = {
   race: undefined,
   gender: undefined,
   caracteristics: {
-    for: 10, const: 10, dex: 10,
-    int: 10, sag: 10, cha: 10,
+    for: 0, const: 0, dex: 0,
+    int: 0, sag: 0, cha: 0,
   },
   languages: [],
   classes: [],
   skills: {},
   features: [],
-  TODO: {
-    race: true,
-    gender: true,
-    caracteristics: true,
-    classes: true
-  }
 }
 
 class Character {
@@ -31,7 +25,6 @@ class Character {
     this.features = completeJson.features;
     this.caracteristics = completeJson.caracteristics;
     this.languages = completeJson.languages;
-    this.TODO = completeJson.TODO;
   }
 
   /**
@@ -100,7 +93,9 @@ class Character {
    */
   get todo() {
     let todo =  {
-      ...this.TODO,
+      race: !this.race,
+      caracteristics: !this.caracteristics.for,
+      gender: !this.gender,
       skills: (this.maxSkillPointSpend - this.skillPointSpend) > 0,
     }
     return (Object.keys(todo).filter(key => todo[key] ) != false) && todo;
