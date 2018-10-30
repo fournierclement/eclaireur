@@ -10,23 +10,21 @@ const caracteristics = {
   "charisme":
 }
 
-  /**
-   * roll new caracteristic
-   */
-  getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-  }
+/**
+ * roll new caracteristic
+ */
+const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
 
-  /**
-   * roll new caracteristic
-   */
-   rollCaracteristic(){
-     const rollA = (getRandomInt(6)+1);
-     const rollB = (getRandomInt(6)+1);
-     const rollC = (getRandomInt(6)+1);
-     const rollD = (getRandomInt(6)+1);
-     return ( (rollA + rollB + rollC + rollD) - (Math.min(rollA, rollB, rollC, rollD)) )
-   }
+/**
+ * roll new caracteristic
+ */
+const rollCaracteristic = () => {
+  const rollA = (getRandomInt(6)+1);
+  const rollB = (getRandomInt(6)+1);
+  const rollC = (getRandomInt(6)+1);
+  const rollD = (getRandomInt(6)+1);
+  return ( (rollA + rollB + rollC + rollD) - (Math.min(rollA, rollB, rollC, rollD)) )
+}
 
 module.exports = {
   "RollCaracteristicsIntent": function () {
