@@ -6,12 +6,17 @@
         {
           "name": "AMAZON.CancelIntent",
           "samples": [
+            "reviens",
+            "arrière",
+            "retour",
             "annule"
           ]
         },
         {
           "name": "AMAZON.HelpIntent",
           "samples": [
+            "à l'aide",
+            "au secours",
             "aide moi",
             "que puis-je faire",
             "aide-moi"
@@ -35,9 +40,10 @@
               "name": "className",
               "type": "ClassePossible",
               "samples": [
-                "faire un {className}",
+                "Ajoute un {className}",
+                "une {className}",
                 "un {className}",
-                "Je voudrais faire un {className}",
+                "Je voudrais ajouter un {className}",
                 "{className}"
               ]
             },
@@ -58,7 +64,6 @@
             "choix de classe",
             "créer une classe",
             "faire {className}",
-            "créer",
             "créer {className}"
           ]
         },
@@ -69,9 +74,21 @@
               "name": "className",
               "type": "ClassePossible",
               "samples": [
-                "je veux créer un {className}",
+                "je veux monter le {className}",
                 "{className}"
               ]
+            },
+            {
+              "name": "typeArme",
+              "type": "TypeArme"
+            },
+            {
+              "name": "domaine",
+              "type": "Domaine"
+            },
+            {
+              "name": "ecoleMagique",
+              "type": "EcoleMagique"
             }
           ],
           "samples": [
@@ -92,30 +109,11 @@
           "slots": [
             {
               "name": "rank_up",
-              "type": "AMAZON.NUMBER",
-              "samples": [
-                "jusqu'à {to_rank}",
-                "passe à {to_rank} rangs",
-                "passe à {to_rank} ",
-                "{rank_up} points",
-                "{rank_up}",
-                "ajoute {rank_up} points",
-                "ajoute {rank_up}",
-                "monte de {rank_up} points",
-                "monte de {rank_up} "
-              ]
+              "type": "AMAZON.NUMBER"
             },
             {
               "name": "skill",
-              "type": "skill",
-              "samples": [
-                "{skill_type}",
-                "{skill}",
-                "en {skill}",
-                "dans {skill_type}",
-                "dans {skill}",
-                "dans des {skill_type}"
-              ]
+              "type": "skill"
             },
             {
               "name": "to_rank",
@@ -127,7 +125,7 @@
             }
           ],
           "samples": [
-            "ouvre les compétences",
+            "{rank_up}",
             "mets {rank_up} en {skill}",
             "rajoute {rank_up} en {skill}",
             "augmente {skill}  de {rank_up}",
@@ -239,6 +237,17 @@
             "Résume moi mon personnage",
             "Donne moi des informations sur mon personnage",
             "Donne moi des informations"
+          ]
+        },
+        {
+          "name": "NoIntent",
+          "samples": [
+            "pas envie",
+            "je ne veux pas",
+            "Non merci",
+            "Nop",
+            "no",
+            "Non"
           ]
         }
       ],
@@ -533,8 +542,6 @@
               "name": {
                 "value": "compétences utilitaires",
                 "synonyms": [
-                  "des compétences utilitaires",
-                  "les compétences utilitaires",
                   "utilitaires"
                 ]
               }
@@ -543,10 +550,6 @@
               "name": {
                 "value": "compétences de connaissances",
                 "synonyms": [
-                  "des compétences de connaissances",
-                  "des connaissances",
-                  "les compétences de connaissances",
-                  "les connaissances",
                   "connaissances"
                 ]
               }
@@ -555,8 +558,6 @@
               "name": {
                 "value": "compétences sociales",
                 "synonyms": [
-                  "des compétences sociales",
-                  "les compétences sociales",
                   "sociales"
                 ]
               }
@@ -565,8 +566,6 @@
               "name": {
                 "value": "compétences physiques",
                 "synonyms": [
-                  "des compétences physiques",
-                  "les compétences physiques",
                   "physiques"
                 ]
               }
@@ -924,6 +923,24 @@
               "prompts": {
                 "elicitation": "Elicit.Slot.526392104239.393711676074"
               }
+            },
+            {
+              "name": "typeArme",
+              "type": "TypeArme",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            },
+            {
+              "name": "domaine",
+              "type": "Domaine",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            },
+            {
+              "name": "ecoleMagique",
+              "type": "EcoleMagique",
+              "elicitationRequired": false,
+              "confirmationRequired": false
             }
           ]
         },
@@ -955,42 +972,6 @@
             {
               "name": "ecoleMagique",
               "type": "EcoleMagique",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            }
-          ]
-        },
-        {
-          "name": "addSkillPoints",
-          "confirmationRequired": false,
-          "slots": [
-            {
-              "name": "rank_up",
-              "type": "AMAZON.NUMBER",
-              "elicitationRequired": true,
-              "confirmationRequired": false,
-              "prompts": {
-                "elicitation": "Elicit.Slot.318385025337.366095190150"
-              }
-            },
-            {
-              "name": "skill",
-              "type": "skill",
-              "elicitationRequired": true,
-              "confirmationRequired": false,
-              "prompts": {
-                "elicitation": "Elicit.Slot.318385025337.1028707353752"
-              }
-            },
-            {
-              "name": "to_rank",
-              "type": "AMAZON.NUMBER",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "skill_type",
-              "type": "skill_type",
               "elicitationRequired": false,
               "confirmationRequired": false
             }
@@ -1044,7 +1025,8 @@
             }
           ]
         }
-      ]
+      ],
+      "delegationStrategy": "SKILL_RESPONSE"
     },
     "prompts": [
       {
@@ -1101,7 +1083,7 @@
         "variations": [
           {
             "type": "PlainText",
-            "value": "Quelle classe voulez vous créer ?"
+            "value": "Quelle classe voulez vous ajouter ?"
           }
         ]
       },
