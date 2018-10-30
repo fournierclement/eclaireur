@@ -109,6 +109,33 @@
 							"value": " Je peux vous donnez les caractéristiques, la race ou la classe de votre personnage. Que voulez vous savoir ?"
 						}
 					]
+				},
+				{
+					"id": "Confirm.Intent.516048183438",
+					"variations": [
+						{
+							"type": "PlainText",
+							"value": "Êtes vous satisfait de vos caractéristiques ?"
+						}
+					]
+				},
+				{
+					"id": "Elicit.Slot.379162732300.305166393781",
+					"variations": [
+						{
+							"type": "PlainText",
+							"value": "Comment voulez-vous appeler votre nouveau personnage ?"
+						}
+					]
+				},
+				{
+					"id": "Elicit.Slot.1452582968946.844810452613",
+					"variations": [
+						{
+							"type": "PlainText",
+							"value": "Quel est le genre de votre humain"
+						}
+					]
 				}
 			],
 			"dialog": {
@@ -238,6 +265,43 @@
 								"confirmationRequired": false,
 								"prompts": {
 									"elicitation": "Elicit.Slot.755084225292.1000811997780"
+								}
+							}
+						]
+					},
+					{
+						"name": "RollCaracteristicsIntent",
+						"confirmationRequired": true,
+						"prompts": {
+							"confirmation": "Confirm.Intent.516048183438"
+						}
+					},
+					{
+						"name": "createCharacter",
+						"confirmationRequired": false,
+						"slots": [
+							{
+								"name": "character_name",
+								"type": "AMAZON.FirstName",
+								"elicitationRequired": true,
+								"confirmationRequired": false,
+								"prompts": {
+									"elicitation": "Elicit.Slot.379162732300.305166393781"
+								}
+							}
+						]
+					},
+					{
+						"name": "ChooseGender",
+						"confirmationRequired": false,
+						"slots": [
+							{
+								"name": "genderRace",
+								"type": "genderRace",
+								"elicitationRequired": true,
+								"confirmationRequired": false,
+								"prompts": {
+									"elicitation": "Elicit.Slot.1452582968946.844810452613"
 								}
 							}
 						]
@@ -759,6 +823,98 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "genderRace",
+			"values": [
+				{
+					"value": "female",
+					"synonyms": [
+						"femme",
+						"feminin",
+						"femelle",
+						"une femelle",
+						"une femme",
+						"fille",
+						"une fille"
+					]
+				},
+				{
+					"value": "male",
+					"synonyms": [
+						"mec",
+						"un mec",
+						"un homme",
+						"un garçon",
+						"garçon",
+						"gars",
+						"un gars",
+						"un male",
+						"masculin",
+						"male",
+						"homme"
+					]
+				},
+				{
+					"value": "elfette",
+					"synonyms": [
+						"fille elfe",
+						"femme elfe",
+						"une fille elfe",
+						"une elfette",
+						"une femme elfe",
+						"une elfe"
+					]
+				},
+				{
+					"value": "elfe",
+					"synonyms": [
+						"un garçon elfe",
+						"un gars elfe",
+						"homme elfe",
+						"elfe",
+						"un homme elfe",
+						"un elfe"
+					]
+				},
+				{
+					"value": "humaine",
+					"synonyms": [
+						"femme humaine",
+						"humaine",
+						"une fille humaine",
+						"une femme humaine",
+						"une humaine"
+					]
+				},
+				{
+					"value": "humain",
+					"synonyms": [
+						"un gars humain",
+						"un mec humain",
+						"un homme humain",
+						"un humain"
+					]
+				},
+				{
+					"value": "naine",
+					"synonyms": [
+						"une femelle naine",
+						"une fille naine",
+						"une femme naine",
+						"une naine"
+					]
+				},
+				{
+					"value": "nain",
+					"synonyms": [
+						"nain",
+						"un gars nain",
+						"un homme nain",
+						"un nain"
+					]
+				}
+			]
 		}
 	],
 	"intents": [
@@ -902,8 +1058,9 @@
 			]
 		},
 		{
-			"name": "NewCharacter",
+			"name": "createCharacter",
 			"phrases": [
+				"crée {character_name}",
 				"Crée nouveau personnage",
 				"Crée un personnage",
 				"Crée un nouveau personnage",
@@ -912,6 +1069,22 @@
 				"Créer un personnage",
 				"Créer un nouveau personnage",
 				"Nouveau personnage"
+			],
+			"inputs": [
+				{
+					"name": "character_name",
+					"type": {
+						"alexa": "AMAZON.FirstName"
+					},
+					"alexa": {
+						"samples": [
+							"Appelons la {character_name}",
+							"Appelons le {character_name}",
+							"je vais l'appeler {character_name}",
+							"{character_name}"
+						]
+					}
+				}
 			]
 		},
 		{
@@ -993,6 +1166,41 @@
 				"Nop",
 				"no",
 				"Non"
+			]
+		},
+		{
+			"name": "RollCaracteristicsIntent",
+			"phrases": [
+				"lance les caracteristiques",
+				"lance les caracs",
+				"lance les stats",
+				"Passe aux caractéristiques",
+				"Tire mes caractéristiques"
+			]
+		},
+		{
+			"name": "ChooseGender",
+			"phrases": [
+				"C'est {genderRace}",
+				"choisie le genre",
+				"choisir son sexe",
+				"choisir son genre",
+				"Je veux choisir son sexe",
+				"Je veux choisir son genre"
+			],
+			"inputs": [
+				{
+					"name": "genderRace",
+					"type": "genderRace",
+					"alexa": {
+						"samples": [
+							"je choisi {genderRace}",
+							"c'est {genderRace}",
+							"ce sera {genderRace}",
+							"{genderRace}"
+						]
+					}
+				}
 			]
 		}
 	]

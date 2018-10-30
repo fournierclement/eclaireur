@@ -18,6 +18,7 @@ module.exports = {
     this.toIntent("AMAZON.CancelIntent");
   },
 
+  "ChooseGender": require("./ChooseGender"),
   "ChooseRaceIntent": require("./RaceState")["ChooseRaceIntent"],
   "RollCaracteristicsIntent": require("./CaracteristicsState")["RollCaracteristicsIntent"],
 
@@ -32,15 +33,16 @@ module.exports = {
       this.followUpState(this.getState())
       .ask(`Pour finir de créer ${character.name}${promptTODO}.`);
     } else if (character && !character.todo) {
-      this.followUpState(this.getState())
-        .ask(`Voulez-vous créer le personnage de ${character.name} ?`);
-    } else {
       saveCharacter(this.user(), character);
+      this.setSessionAttribute('character_name', character.name);
       this.followUpState("OpenedCharacter")
-      .ask(`
+        .ask(`
       Le personnage de ${character.name} vient d'être ajouté dans votre collection,
       vous pouvez désormais lui ajouter une classes ou quitter.
       `)
+    } else {
+      this.followUpState(null)
+        .ask(`Quelque chose s'est mal passé. Déso bye.`);
     }
   },
 

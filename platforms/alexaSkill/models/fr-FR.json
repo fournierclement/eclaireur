@@ -272,6 +272,29 @@
             "Passe aux caractéristiques",
             "Tire mes caractéristiques"
           ]
+        },
+        {
+          "name": "ChooseGender",
+          "slots": [
+            {
+              "name": "genderRace",
+              "type": "genderRace",
+              "samples": [
+                "je choisi {genderRace}",
+                "c'est {genderRace}",
+                "ce sera {genderRace}",
+                "{genderRace}"
+              ]
+            }
+          ],
+          "samples": [
+            "C'est {genderRace}",
+            "choisie le genre",
+            "choisir son sexe",
+            "choisir son genre",
+            "Je veux choisir son sexe",
+            "Je veux choisir son genre"
+          ]
         }
       ],
       "types": [
@@ -914,6 +937,114 @@
             }
           ],
           "name": "askAboutInformation"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "female",
+                "synonyms": [
+                  "femme",
+                  "feminin",
+                  "femelle",
+                  "une femelle",
+                  "une femme",
+                  "fille",
+                  "une fille"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "male",
+                "synonyms": [
+                  "mec",
+                  "un mec",
+                  "un homme",
+                  "un garçon",
+                  "garçon",
+                  "gars",
+                  "un gars",
+                  "un male",
+                  "masculin",
+                  "male",
+                  "homme"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "elfette",
+                "synonyms": [
+                  "fille elfe",
+                  "femme elfe",
+                  "une fille elfe",
+                  "une elfette",
+                  "une femme elfe",
+                  "une elfe"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "elfe",
+                "synonyms": [
+                  "un garçon elfe",
+                  "un gars elfe",
+                  "homme elfe",
+                  "elfe",
+                  "un homme elfe",
+                  "un elfe"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "humaine",
+                "synonyms": [
+                  "femme humaine",
+                  "humaine",
+                  "une fille humaine",
+                  "une femme humaine",
+                  "une humaine"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "humain",
+                "synonyms": [
+                  "un gars humain",
+                  "un mec humain",
+                  "un homme humain",
+                  "un humain"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "naine",
+                "synonyms": [
+                  "une femelle naine",
+                  "une fille naine",
+                  "une femme naine",
+                  "une naine"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "nain",
+                "synonyms": [
+                  "nain",
+                  "un gars nain",
+                  "un homme nain",
+                  "un nain"
+                ]
+              }
+            }
+          ],
+          "name": "genderRace"
         }
       ]
     },
@@ -1069,6 +1200,21 @@
               }
             }
           ]
+        },
+        {
+          "name": "ChooseGender",
+          "confirmationRequired": false,
+          "slots": [
+            {
+              "name": "genderRace",
+              "type": "genderRace",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1452582968946.844810452613"
+              }
+            }
+          ]
         }
       ],
       "delegationStrategy": "SKILL_RESPONSE"
@@ -1196,6 +1342,15 @@
           {
             "type": "PlainText",
             "value": "Comment voulez-vous appeler votre nouveau personnage ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1452582968946.844810452613",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Quel est le genre de votre humain"
           }
         ]
       }

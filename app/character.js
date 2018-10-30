@@ -35,7 +35,7 @@ class Character {
   /**
    * character skill
    */
-  skill(skillName){ return this.skills[skillName] || rules[skillName] }
+  skill(skillName){ return this.skills[skillName] || rules.skills[skillName] }
   setRanks(skillName, rank){
     if( !this.skills[skillName] ){
       this.skills[skillName] = {rank:0, class: false};
@@ -72,6 +72,10 @@ class Character {
    */
   setRace(race_type){
     this.race = race_type;
+  }
+
+  setGender(gender){
+    this.gender = gender;
   }
 
   /**
