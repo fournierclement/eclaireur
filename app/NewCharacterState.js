@@ -6,7 +6,7 @@ module.exports = {
     let character = new Character({name: character_name});
     saveCharacter(this.user(), character);
     this.followUpState("OpenedCharacter")
-    .ask(`Le personnage de ${character_name} vient d'être ajouté à votre collection`)
+      .ask(`Le personnage de ${character_name} vient d'être ajouté à votre collection. ${character.promptTODO}`)
   },
   'Unhandled': function(){
     this.ask("ok")
