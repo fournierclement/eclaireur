@@ -30,10 +30,7 @@ module.exports = {
       if (character.todo.gender) { promptTODO += ", choisissez un genre"; }
       if (character.todo.caracteristics) { promptTODO += ", lancer ses caracs"; }
       this.followUpState(this.getState())
-      .ask(`
-        Vous êtes en train de créer ${character.name}.
-        Pour finir${promptTODO}.
-      `)
+      .ask(`Pour finir de créer ${character.name}${promptTODO}.`);
     } else if (character && !character.todo) {
       this.followUpState(this.getState())
         .ask(`Voulez-vous créer le personnage de ${character.name} ?`);

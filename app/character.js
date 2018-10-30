@@ -77,14 +77,14 @@ class Character {
   /**
    * Set the caracteristics for a character
    */
-  setCaracteristics(caracteristics){
+  setCaracteristics(newCaracs){
     this.caracteristics = {
-      for: caracteristics.force,
-      dex: caracteristics.dextérité,
-      const: caracteristics.constitution,
-      int: caracteristics.intelligence,
-      sag: caracteristics.sagesse,
-      cha: caracteristics.charisme
+      for: newCaracs.force,
+      dex: newCaracs.dextérité,
+      const: newCaracs.constitution,
+      int: newCaracs.intelligence,
+      sag: newCaracs.sagesse,
+      cha: newCaracs.charisme
     };
   }
 
@@ -149,13 +149,9 @@ class Character {
   get promptTODO() {
     let prompt = "";
     if (this.todo) {
-      prompt += `Ce personnage a une montée de niveau en cours. Pour finir, `;
-      if (this.todo.race) { prompt += "Choisissez une race. "; }
-      if (this.todo.gender) { prompt += "Choisissez un genre. "; }
-      if (this.todo.classes) { prompt += "Choisissez et complétez sa classe. "; }
-      if (this.todo.skills) { prompt += "Ouvrez et Complétez les compétences. "; }
+      if (this.todo.skills) { prompt += "Ce personnage doit compléter ces compétences. "; }
     } else {
-      prompt += "Vous pouvez monter de niveau ou modifier son équipement.";
+      prompt += "Ce personange est fini mais vous pouvez toujours monter de niveau.";
     }
     return prompt;
   }

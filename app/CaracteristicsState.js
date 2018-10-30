@@ -37,22 +37,20 @@ module.exports = {
         "sagesse" : rollCaracteristic(),
         "charisme" : rollCaracteristic()
       };
-      this.setSessionAttribute("caracteristics", newCaracs);
-      // Prompt voici les caractéristiques que j'ai roll pour Vous
-      this.ask(
+      this.user().data.caracs = newCaracs;
+      this.alexaSkill().dialogConfirmIntent(
         `Vos caractéristiques sont les suivantes.
         Votre force est de ${newCaracs.force}.
         Votre dextérité est de ${newCaracs.dextérité}.
         Votre constitution est de ${newCaracs.constitution}.
         Votre intelligence est de ${newCaracs.intelligence}.
         Votre sagesse est de ${newCaracs.sagesse}.
-        Votre charisme est de ${newCaracs.charisme}.`
-      );
-      this.alexaSkill().dialogConfirmIntent(
-        'Est ce que ces caractéristiques sont satisfaisantes ?'
+        Votre charisme est de ${newCaracs.charisme}.
+        Est ce que ces caractéristiques sont satisfaisantes ?
+        `
       );
     } else {
-      const caracs = this.getSessionAttribute("caracteristics");
+      const caracs = this.user().data.caracs;
       character.setCaracteristics(caracs);
       this.setSessionAttribute("newCharacter", character.toJSON);
       this.followUpState("NewCharacter")
