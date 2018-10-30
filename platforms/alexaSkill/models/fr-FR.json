@@ -249,6 +249,13 @@
             "no",
             "Non"
           ]
+        },
+        {
+          "name": "RollCaracteristicsIntent",
+          "samples": [
+            "Passe aux caractéristiques",
+            "Tire mes caractéristiques"
+          ]
         }
       ],
       "types": [
@@ -1024,6 +1031,13 @@
               }
             }
           ]
+        },
+        {
+          "name": "RollCaracteristicsIntent",
+          "confirmationRequired": true,
+          "prompts": {
+            "confirmation": "Confirm.Intent.516048183438"
+          }
         }
       ],
       "delegationStrategy": "SKILL_RESPONSE"
@@ -1133,6 +1147,15 @@
           {
             "type": "PlainText",
             "value": " Je peux vous donnez les caractéristiques, la race ou la classe de votre personnage. Que voulez vous savoir ?"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Intent.516048183438",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Êtes vous satisfait de vos caractéristiques ?"
           }
         ]
       }
