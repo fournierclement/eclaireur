@@ -39,6 +39,7 @@ const races = {
       "compétences": {
         "perception": 2,
       },
+    }
   },
   "nain": {
     "vitesse": 6,
@@ -60,9 +61,9 @@ const races = {
         "estimation": 2,
         "perception": 2
       },
-  },
+    },
+  }
 }
-
 
 module.exports = {
   "ChooseRaceIntent": function () {
