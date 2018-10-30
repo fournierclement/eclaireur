@@ -96,6 +96,9 @@ module.exports = {
 
     }
   },
+  'Unhandled': function(){
+    this.toIntent("AMAZON.HelpIntent")
+  },
   "AMAZON.CancelIntent": function() {
     this.followUpState("OpenedCharacter")
     .toIntent("Unhandled");
@@ -104,6 +107,6 @@ module.exports = {
     this.tell("Vos modifications ont bien étées prises en compte. A bientôt !")
   },
   "AMAZON.HelpIntent": function() {
-    this.ask("D'ici, vous pouvez ajouter des classes à votre personnage ou les monter de niveau.")
+    this.ask("D'ici, vous pouvez ajouter des classes à votre personnage ou les monter de niveau. Vous pouvez également dire retour pour revenir au menu du personnage.")
   },
 }
